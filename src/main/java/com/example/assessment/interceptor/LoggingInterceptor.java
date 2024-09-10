@@ -20,7 +20,6 @@ public class LoggingInterceptor implements HandlerInterceptor {
         logger.info("Incoming Request: Method: [{}], URI: [{}], Remote Address: [{}]",
                 request.getMethod(), request.getRequestURI(), request.getRemoteAddr());
 
-        // Log headers (optional)
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();

@@ -5,19 +5,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 public class ExternalApiService {
 
     @Autowired
-    private static RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     @Value("${url.external}")
     private String externalUrl;
 
     public String externalUrlCall() {
-        if (restTemplate == null) {
-            throw new IllegalStateException("RestTemplate has not been initialized");
-        }
+        Optional.ofNullable(restTemplate).orElseThrow( () -> new IllegalStateException("RestTemplate has not been initialized"));
+
+        Optional.ofNullable(externalUrl).orElseThrow( () -> new NoSuchElementException("External Url not found"));
+
         return restTemplate.getForEntity(externalUrl, String.class).getBody();
     }
 
