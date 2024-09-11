@@ -24,7 +24,7 @@ public class CommonController {
     private ItemService itemService;
 
     @GetMapping("/item")
-    public ResponseEntity<List<ItemResponseDTO>> getItemByPagination(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "0") int size) {
+    public ResponseEntity<List<ItemResponseDTO>> getItemByPagination(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(itemService.getItemByPagination(page, size));
     }
 
