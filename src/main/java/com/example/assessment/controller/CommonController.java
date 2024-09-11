@@ -29,6 +29,7 @@ public class CommonController {
     }
 
     // Add a new item
+    @Deprecated
     @PostMapping("/item")
     public ResponseEntity<ItemEntity> addItem(@Valid @RequestBody ItemNewDTO itemNewDTO) {
         ItemEntity createdItem = itemService.saveItem(itemNewDTO);
@@ -36,6 +37,7 @@ public class CommonController {
     }
 
     // Update an existing item
+    @Deprecated
     @PutMapping("/item/{id}")
     public ResponseEntity<ItemEntity> updateItem(@PathVariable Long id, @Valid @RequestBody ItemNewDTO itemNewDTO) {
         ItemEntity updatedItem = itemService.updateItem(id, itemNewDTO);
